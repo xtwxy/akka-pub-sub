@@ -4,9 +4,9 @@ name := "subscribe"
 organization := "com.apuex"
 version := "1.0.0"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.8"
 
-lazy val akkaVersion = "2.5.3"
+lazy val akkaVersion = "2.5.21"
 
 publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))
 

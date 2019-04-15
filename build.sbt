@@ -1,11 +1,12 @@
 import sbtassembly.MergeStrategy
 
-lazy val akkaVersion = "2.5.3"
+lazy val akkaVersion = "2.5.21"
+lazy val akkaHttpVersion = "10.1.7"
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.apuex",
-      scalaVersion := "2.12.3",
+      scalaVersion := "2.12.8",
       version      := "1.0.0"
     )),
     name := "scala",
@@ -34,8 +35,12 @@ fork := true
 
 lazy val message = (project in file("message"))
 lazy val publish = (project in file("publish"))
+    .enablePlugins(JavaServerAppPackaging)
+    .enablePlugins(GraalVMNativeImagePlugin)
     .dependsOn(message)
-lazy val subscribe = (project in file("subscribe")).dependsOn(message, publish)
+lazy val subscribe = (project in file("subscribe"))
+    .enablePlugins(GraalVMNativeImagePlugin)
+    .dependsOn(message, publish)
 lazy val scheduler = (project in file("scheduler"))
 
 
